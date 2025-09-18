@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JOLENT .GO.UG LTD | Construction & Services</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="android-chrome-192x192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="android-chrome-512x512.png">
+<link rel="manifest" href="site.webmanifest">
+
+<meta name="msapplication-TileColor" content="#2b5797">
+<meta name="msapplication-config" content="browserconfig.xml">
+
+<meta name="theme-color" content="#ffffff">
+
+    <style>
+        /* Global Styles */
+        :root {
+            --primary: #1a5276;
+            --secondary: #e67e22;
+            --accent: #2ecc71;
+            --light: #f5f5f5;
+            --dark: #333;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-content {
+            position: relative;
+        }
+        
+        .service-content p {
+            position: relative;
+            max-height: 88px; /* Exactly 4 lines (22px per line) */
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            margin-bottom: 5px;
+            line-height: 22px;
+        }
+
+        .service-content p.expanded {
+            max-height: 1000px;  /* Large enough to show full content */
+        }
+
+        .read-more-btn {
+            color: var(--secondary);
+            cursor: pointer;
+            font-weight: 600;
+            display: none;  /* Hidden by default */
+            margin-top: 5px;
+            text-decoration: underline;
+        }
+
+        .read-more-btn:hover {
+            color: var(--primary);
+        }
+
+        /* Gradient fade for truncated text */
+        .service-content p:not(.expanded)::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 24px; /* One line height */
+            background: linear-gradient(transparent, white);
+            pointer-events: none;
+        }
+            
+        
+        .service-content p.expanded {
+            display: block;
+            -webkit-line-clamp: unset;
+        }
+        
+        .read-more-btn {
+            color: var(--secondary);
+            cursor: pointer;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 8px;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+            text-decoration: underline;
+            opacity: 1 !important;
+        }
+        
+        .read-more-btn:hover {
+            color: var(--primary);
+            opacity: 0.8;
+        }
+
+        .service-content p {
+            margin: 0;
+            max-height: 6em; /* Approximately 4 lines */
+            overflow: hidden;
+            position: relative;
+            transition: max-height 0.3s ease;
+        }
+
+        .service-content p.expanded {
+            max-height: none;
+        }
+
+        .service-content p:not(.expanded)::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 1.5em;
+            background: linear-gradient(transparent, white);
+        }
+
+        .read-more-btn {
+            color: var(--secondary);
+            cursor: pointer;
+            display: none;
+            font-weight: bold;
+            margin-top: 0.5em;
+        }
+
+        .read-more {
+            color: var(--secondary);
+            cursor: pointer;
+            font-weight: 600;
+            display: none;
+            margin-top: 8px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: var(--light);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        h1, h2, h3, h4 {
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        p {
+            margin-bottom: 15px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: var(--secondary);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #d35400;
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+        
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+            margin: 15px auto;
+        }
+        
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo h1 {
+            font-size: 24px;
+            margin: 0;
+            color: var(--primary);
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+        
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            color: white;
+            text-align: center;
+            margin-top: 60px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-icon {
+            background-color: var(--primary);
+            color: white;
+            font-size: 2.5rem;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .service-content {
+            padding: 20px;
+        }
+        
+        /* About Section */
+        .about {
+            background-color: white;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .about-image {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .vision-mission {
+            margin-top: 30px;
+        }
+        
+        .vm-item {
+            margin-bottom: 25px;
+            padding-left: 30px;
+            border-left: 4px solid var(--secondary);
+        }
+        
+        /* Core Values */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .value-card {
+            text-align: center;
+            padding: 30px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .value-card h3 {
+            color: white;
+            margin-bottom: 10px;
+        }
+        
+        .value-icon {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+        
+        .value-card p {
+            color: #f0f0f0;
+            line-height: 1.6;
+        }
+        
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .project-card {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            height: 250px;
+        }
+        
+        .project-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .project-card:hover img {
+            transform: scale(1.1);
+        }
+        
+        .project-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            padding: 20px;
+            color: white;
+        }
+        
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+        
+        .contact-form {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+        
+        .footer-logo h2 {
+            color: white;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links h3,
+        .footer-services h3,
+        .footer-newsletter h3 {
+            color: white;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .footer-links h3:after,
+        .footer-services h3:after,
+        .footer-newsletter h3:after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 3px;
+            background: var(--secondary);
+            margin-top: 10px;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links ul li a:hover {
+            color: var(--secondary);
+        }
+        
+        .footer-services ul {
+            list-style: none;
+            columns: 2;
+        }
+        
+        .footer-services ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-services ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-services ul li a:hover {
+            color: var(--secondary);
+        }
+        
+        .newsletter-form {
+            display: flex;
+            margin-top: 15px;
+        }
+        
+        .newsletter-form input {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 5px 0 0 5px;
+        }
+        
+        .newsletter-form button {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 0 15px;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            nav {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: white;
+                box-shadow: var(--shadow);
+                padding: 20px;
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+            }
+            
+            nav.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .section {
+                padding: 60px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .footer-services ul {
+                columns: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="logo.jpg" alt="Jolent Logo" style="height:40px; margin-right:10px;">
+                <h1>JOLENT <span>.GO.UG</span> LTD</h1>
+            </div>
+            
+            <div class="menu-toggle" id="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <nav id="nav">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-slider">
+            <div class="slide active" style="background-image: url('main.jpg')">
+                <div class="container hero-content">
+                    <h1>Building The Future With Excellence</h1>
+                    <p>Transforming visions into reality with state-of-the-art construction solutions and unmatched expertise in building development.</p>
+                    <a href="#contact" class="btn">Get In Touch</a>
+                </div>
+            </div>
+            <div class="slide" style="background-image: url('electrical.jpg')">
+                <div class="container hero-content">
+                    <h1>Powering Your World</h1>
+                    <p>Expert electrical installations and maintenance services ensuring safety and efficiency in every connection we make.</p>
+                    <a href="#contact" class="btn">Get In Touch</a>
+                </div>
+            </div>
+            <div class="slide" style="background-image: url('plumbing.jpg')">
+                <div class="container hero-content">
+                    <h1>Quality Plumbing Solutions</h1>
+                    <p>Professional plumbing services delivering reliable water systems and expert solutions for all your plumbing needs.</p>
+                    <a href="#contact" class="btn">Get In Touch</a>
+                </div>
+            </div>
+            <div class="slide" style="background-image: url('transport.jpg')">
+                <div class="container hero-content">
+                    <h1>Efficient Logistics Services</h1>
+                    <p>Reliable transportation and logistics solutions keeping your projects moving forward with precision timing.</p>
+                    <a href="#contact" class="btn">Get In Touch</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .hero {
+            background-color: var(--primary);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            height: 80vh;
+        }
+
+        .hero-slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding-top: 15vh;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .slide.active .hero-content {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+
+    <script>
+        // Hero Slider functionality
+        function initHeroSlider() {
+            const slides = document.querySelectorAll('.hero-slider .slide');
+            let currentSlide = 0;
+            
+            function nextSlide() {
+                slides[currentSlide].classList.remove('active');
+                currentSlide = (currentSlide + 1) % slides.length;
+                slides[currentSlide].classList.add('active');
+            }
+            
+            // Change slide every 5 seconds
+            setInterval(nextSlide, 5000);
+        }
+
+        // Initialize slider when DOM is loaded
+        document.addEventListener('DOMContentLoaded', initHeroSlider);
+    </script>
+
+    <!-- Services Section -->
+    <section class="section" id="services">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Electrical Works</h3>
+                        <p>Professional electrical installations, maintenance, and repairs for residential, commercial, and industrial properties.</p>
+                        <span class="read-more-btn">Read More</span>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-faucet"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Plumbing Works</h3>
+                        <p>Comprehensive plumbing solutions including installation, repair, and maintenance of water systems.</p>
+                        <span class="read-more-btn">Read More</span>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-wind"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Air Conditioning Services</h3>
+                        <p>Installation, maintenance, and repair of HVAC systems for optimal climate control.</p>
+                        <span class="read-more-btn">Read More</span>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-hard-hat"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Building Construction & Renovation</h3>
+                        <p>End-to-end construction services from planning to execution for residential and commercial buildings.</p>
+                        <span class="read-more-btn">Read More</span>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Heavy Machinery Leasing</h3>
+                        <p>In Jolent ltd, we provide a dynamic transport and logistics partner 
+built for the modern economy. We specialize in creating agile, 
+technology-driven solutions that simplify complex supply chains. From 
+expedited freight and flexible warehousing to real-time shipment 
+tracking and data analytics, we provide the clarity and control you 
+need to stay competitive. Our mission is to turn logistical challenges 
+into your greatest advantage, ensuring speed, security, and 
+seamless connectivity every step of the way.</p>
+                        <span class="read-more-btn">Read More</span>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-ruler-combined"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Surveying & Civil Engineering</h3>
+                        <p>Professional surveying and civil engineering services for infrastructure projects.</p>
+                        <span class="read-more-btn">Read More</span>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Transport & Logistics</h3>
+                        <p>In Jolent ltd, we provide a dynamic transport and logistics partner 
+built for the modern economy. We specialize in creating agile, 
+technology-driven solutions that simplify complex supply chains. From 
+expedited freight and flexible warehousing to real-time shipment 
+tracking and data analytics, we provide the clarity and control you 
+need to stay competitive. Our mission is to turn logistical challenges into your greatest advantage, ensuring speed, security, and 
+seamless connectivity every step of the way.</p>
+                        <span class="read-more-btn">Read More</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <style>
+        .section.about {
+            padding: 80px 0;
+            position: relative;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('air.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+        }
+        
+        .section.about .section-title h2,
+        .section.about h3 {
+            color: white !important;
+        }
+        
+        .section.about p {
+            color: #f0f0f0;
+        }
+    </style>
+
+    <section class="section about" id="about">
+        <div class="container">
+            <h2 class="section-title">About Us</h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Construction Team">
+                </div>
+                <div class="about-text">
+                    <p>JOLENT .GO.UG LTD is a leading provider of comprehensive construction and infrastructure services in Uganda. With years of experience and a dedicated team of professionals, we deliver quality solutions tailored to our clients' needs.</p>
+                    
+                    <div class="vision-mission">
+                        <div class="vm-item">
+                            <h3>Our Vision</h3>
+                            <p>To become the leading provider of quality civil engineering, hiring and leasing of heavy machinaries and construction services of choice in Uganda and East Africa</p>
+                        </div>
+                        
+                        <div class="vm-item">
+                            <h3>Our Mission</h3>
+                            <p>We exist to deliver excelent construction and engineering services, safely, to our customers, 
+using committed and innovative resources while registering optimum returns on our 
+investment.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <h2 class="section-title">Our Core Values</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3>Excellence</h3>
+                    <p>We constantly thrive for excellence, to deliver what we promise, and exceed our customers’ expectations.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Integrity</h3>
+                    <p> We operate with full transparency and are open, honest, and fair in all aspects of our business.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Commitment</h3>
+                    <p>We are committed to continuous improvement and exceeding the expectations of our customers.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Innovation</h3>
+                    <p>We are empowered and encouraged to identify, develop and deploy 
+resources that bring real value to our customers and deliver returns to the company.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section" id="projects">
+        <div class="container">
+            <h2 class="section-title">Our Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Construction Project">
+                    <div class="project-overlay">
+                        <h3>Commercial Complex</h3>
+                        <p>Kampala, Uganda</p>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <img src="electrical.jpg" alt="Electrical Installation">
+                    <div class="project-overlay">
+                        <h3>Electrical Installation</h3>
+                        <p>Entebbe, Uganda</p>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <img src="main.jpg" alt="Plumbing Work">
+                    <div class="project-overlay">
+                        <h3>Mining project</h3>
+                        <p>Kabale, Uganda</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h3>Location</h3>
+                            <p><b>HEAD OFFICE</b>
+                                <br>Tororo (U)
+                            <br>
+                        Along Nagongera rd.<br>P.O Box 120299 Tororo (U)<br>Tel: +256 750090050</p>
+                        </div>
+                        <div>
+                            <h3>BRANCHES</h3>
+                            <p> Kingdom kampala<br>along Nile avenue rd.<br>Kampala (u)<br>tell: +256780845480
+                                <br><br>
+                             KABALE (U)<br>Along makanga rd<br>tell: +256741793142</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <h3>Phone</h3>
+                            <p>+256 750090050(Head office)<br>+256 780845480(Kingdom kampala)<br>+256741793142(Kabale)</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h3>Email</h3>
+                            <p>jolentcontractors@gmail.com<br>P.O BOX 120299, Kampala Uganda</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div>
+                            <h3>Working Hours</h3>
+                            <p>Monday - Friday: 8:00 AM - 6:00 PM<br>Saturday: 9:00 AM - 1:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Your Email</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-container">
+            <div class="footer-logo">
+                <h2>JOLENT .GO.UG LTD</h2>
+                <p>Your trusted partner for construction and infrastructure services in Uganda. We deliver quality, reliability, and excellence in every project.</p>
+            </div>
+            
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-services">
+                <h3>Our Services</h3>
+                <ul>
+                    <li><a href="#services">Electrical Works</a></li>
+                    <li><a href="#services">Plumbing Works</a></li>
+                    <li><a href="#services">Air Conditioning</a></li>
+                    <li><a href="#services">Building Construction</a></li>
+                    <li><a href="#services">Machinery Leasing</a></li>
+                    <li><a href="#services">Surveying</a></li>
+                    <li><a href="#services">Transport & Logistics</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-newsletter">
+                <h3>Newsletter</h3>
+                <p>Subscribe to our newsletter to get updates on our services and projects.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your Email Address">
+                    <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="container copyright">
+            <p>&copy; 2023 JOLENT .GO.UG LTD. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const nav = document.getElementById('nav');
+        
+        menuToggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+        
+        // Close menu when clicking on a link
+        const navLinks = document.querySelectorAll('nav ul li a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+            });
+        });
+
+        // Read More functionality
+        window.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.service-content').forEach(serviceContent => {
+                const paragraph = serviceContent.querySelector('p');
+                const readMoreBtn = serviceContent.querySelector('.read-more-btn');
+                
+                if (!paragraph || !readMoreBtn) return;
+                
+                // More accurate overflow detection
+                const lineHeight = 22; // Matches CSS line-height
+                const maxLines = 4;
+                const maxHeight = lineHeight * maxLines;
+                const shouldShowButton = paragraph.scrollHeight > maxHeight;
+                
+                if (shouldShowButton) {
+                    readMoreBtn.style.display = 'block';
+                    
+                    readMoreBtn.addEventListener('click', () => {
+                        const isExpanded = paragraph.classList.contains('expanded');
+                        
+                        paragraph.classList.toggle('expanded');
+                        readMoreBtn.textContent = isExpanded ? 'Read More' : 'Show Less';
+                        
+                        if (isExpanded) {
+                            serviceContent.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    });
+                }
+            });
+        });
+
+        // Handle Read More functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.service-content').forEach(function(content) {
+                const paragraph = content.querySelector('p');
+                const readMoreBtn = content.querySelector('.read-more-btn');
+                
+                if (!paragraph || !readMoreBtn) return;
+
+                // Check if content needs Read More button
+                const originalText = paragraph.textContent;
+                const isOverflowing = paragraph.scrollHeight > paragraph.clientHeight;
+
+                if (isOverflowing) {
+                    readMoreBtn.style.display = 'block';
+                    
+                    readMoreBtn.addEventListener('click', function() {
+                        if (paragraph.classList.contains('expanded')) {
+                            // Collapse
+                            paragraph.classList.remove('expanded');
+                            readMoreBtn.textContent = 'Read More';
+                            // Smooth scroll if needed
+                            setTimeout(() => {
+                                content.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                            }, 100);
+                        } else {
+                            // Expand
+                            paragraph.classList.add('expanded');
+                            readMoreBtn.textContent = 'Show Less';
+                        }
+                    });
+                } else {
+                    readMoreBtn.style.display = 'none';
+                }
+            });
+        });
+
+        // Read More functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.service-content').forEach(function(container) {
+                const paragraph = container.querySelector('p');
+                const readMoreBtn = container.querySelector('.read-more-btn');
+                
+                // Check if content exceeds 4 lines
+                if (paragraph.scrollHeight > paragraph.clientHeight) {
+                    readMoreBtn.style.display = 'block';
+                    
+                    readMoreBtn.addEventListener('click', function() {
+                        if (paragraph.classList.contains('expanded')) {
+                            paragraph.classList.remove('expanded');
+                            readMoreBtn.textContent = 'Read More';
+                            // Smooth scroll back to the card's top if needed
+                            container.scrollIntoView({ behavior: 'smooth' });
+                        } else {
+                            paragraph.classList.add('expanded');
+                            readMoreBtn.textContent = 'Show Less';
+                        }
+                    });
+                }
+            });
+        });
+        
+        // Form submission
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for your message. We will get back to you soon!');
+                contactForm.reset();
+            });
+        }
+        
+        // Sticky header
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            header.classList.toggle('sticky', window.scrollY > 0);
+        });
+    </script>
+</body>
+</html>

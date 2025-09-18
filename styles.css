@@ -240,13 +240,26 @@
         /* About Section */
         .about {
             padding: 80px 0;
-            background: #f1f3f5;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('air.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
         }
         
         .about-content {
             display: flex;
             align-items: center;
             gap: 40px;
+        }
+
+        .about .section-title h2,
+        .about-text h3 {
+            color: white;
+        }
+
+        .about-text p {
+            color: #f0f0f0;
         }
         
         .about-image {
